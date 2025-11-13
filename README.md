@@ -1,11 +1,13 @@
 # Resolvendo o Erro gdk-pixbuf g_module_open specified module could not be found no Windows com Conda
 
 ### TL;DR
-Se você está enfrentando erros como "The specified procedure could not found" ou "g_module_open() failed" ao executar gdk-pixbuf-query-loaders.exe no Windows com Miniconda, o problema é incompatibilidade de dependências entre gdk-pixbuf e gettext. A solução é usar o Mamba para criar um ambiente limpo, pois ele resolve dependências de forma mais inteligente.
+Se você está enfrentando erros como `The specified procedure could not found` ou `g_module_open() failed` ao executar gdk-pixbuf-query-loaders.exe no Windows com Miniconda, possivelmente o problema é incompatibilidade de dependências entre gdk-pixbuf e gettext. A solução foi usar o Mamba para criar um ambiente limpo, pois ele resolve dependências de forma mais inteligente. 😎
 
 #### Solução rápida
 ```shell
-mamba create -n meu_ambiente python=3.11 gdk-pixbuf -c conda-forge
+mamba create -n meu_ambiente python=3.12
+mamba activate meu_ambiente
+mamba install gdk-pixbuf
 ```
 
 #### Problema
@@ -97,7 +99,7 @@ conda activate nome-env
 mamba install -c conda-forge gdk-pixbuf
 ```
 
-#### 4. TESTE (deve funcionar!)
+#### 4. TESTE (e deve funcionar!) 👍
 ```
 & "$env:CONDA_PREFIX\Library\bin\gdk-pixbuf-query-loaders.exe"
 ```
